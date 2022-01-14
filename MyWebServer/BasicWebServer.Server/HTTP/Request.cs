@@ -38,12 +38,12 @@
 
             foreach (string headerLine in headerLines)
             {
-                if (headerLine == "")
+                if (headerLine == string.Empty)
                 {
                     break;
                 }
 
-                string[] headerParts = headerLine.Split(": ", 2);
+                string[] headerParts = headerLine.Split(":", 2);
 
                 if (headerParts.Length != 2)
                 {
@@ -51,7 +51,9 @@
                 }
 
                 string headerName = headerParts[0];
-                string headerValue = headerParts[1];
+                string headerValue = headerParts[1].Trim();
+
+                headerCollection.Add(headerName, headerValue);
             }
 
             return headerCollection;
