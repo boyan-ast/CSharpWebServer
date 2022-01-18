@@ -67,6 +67,8 @@ namespace BasicWebServer.Server
                         response.PreRenderAction(request, response);
                     }
 
+                    AddSession(request, response);
+
                     await this.WriteResponse(networkStream, response);
 
                     connection.Close();
@@ -106,6 +108,20 @@ namespace BasicWebServer.Server
             byte[] responseBytes = Encoding.UTF8.GetBytes(response.ToString());
 
             await networkStream.WriteAsync(responseBytes);
+        }
+
+        private static void AddSession(Request request, Response response)
+        {
+            bool sessionExists = request.Session
+                .ContainsKey(Session.SessionCurrentDateKey);
+
+            if (!sessionExists)
+            {
+                //UtcNow ?
+                request.Session[Session.SessionCurrentDateKey] = DateTime.Now.ToString();
+
+                response.Cookies.Add(Session.SessionCookieName, request.Session.Id);
+            }
         }
     }
 }
