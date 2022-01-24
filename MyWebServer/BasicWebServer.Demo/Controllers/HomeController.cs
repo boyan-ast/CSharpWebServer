@@ -7,16 +7,6 @@ namespace BasicWebServer.Demo.Controllers
 {
     public class HomeController : Controller
     {
-        private const string HtmlForm = @"<form action='/HTML' method='POST'>
-   Name: <input type='text' name='Name'/>
-   Age: <input type='number' name ='Age'/>
-<input type='submit' value ='Save' />
-</form>";
-
-        private const string DownloadForm = @"<form action='/Content' method='POST'>
-   <input type='submit' value ='Download Sites Content' /> 
-</form>";
-
         private const string FileName = "content.txt";
 
         public HomeController(Request request) : base(request)
@@ -27,7 +17,7 @@ namespace BasicWebServer.Demo.Controllers
 
         public Response Redirect() => this.Redirect("https://softuni.org/");
 
-        public Response Html() => this.Html(HtmlForm);
+        public Response Html() => this.View();
 
         public Response HtmlFormPost()
         {
@@ -42,7 +32,7 @@ namespace BasicWebServer.Demo.Controllers
             return this.Text(formData);
         }
 
-        public Response Content() => Html(DownloadForm);
+        public Response Content() => this.View();
 
         public Response DownloadContent()
         {

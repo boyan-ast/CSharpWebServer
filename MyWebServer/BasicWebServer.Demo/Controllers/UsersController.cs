@@ -3,23 +3,17 @@ using BasicWebServer.Server.HTTP;
 
 namespace BasicWebServer.Demo.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        private const string LoginForm = @"<form action='/Login' method='POST'>
-   Username: <input type='text' name='Username'/>
-   Password: <input type='text' name='Password'/>
-   <input type='submit' value ='Log In' /> 
-</form>";
-
         private const string Username = "user";
 
         private const string Password = "1234";
 
-        public UserController(Request request) : base(request)
+        public UsersController(Request request) : base(request)
         {
 
         }
-        public Response Login() => this.Html(LoginForm);
+        public Response Login() => this.View();
 
         public Response LogInUser()
         {
