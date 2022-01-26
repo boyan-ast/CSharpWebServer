@@ -34,7 +34,7 @@ namespace BasicWebServer.Demo.Controllers
                     return this.Html("<h3>Logged successfully!</h3>", cookies);
                 }
 
-                return this.Html("<h3> Logge successfully!</h3>");
+                return this.Html("<h3> Logged successfully!</h3>");
             }
 
             return this.Redirect("/Login");
